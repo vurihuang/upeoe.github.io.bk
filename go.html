@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Upeoe&#39;s blog | The Way to Go</title>
+    <meta name="description" content="The way to learning go">
+    
+    
+    <link rel="preload" href="/assets/css/8.styles.6929ea29.css" as="style"><link rel="preload" href="/assets/js/app.b13a9952.js" as="script"><link rel="preload" href="/assets/js/3.f52f4b16.js" as="script"><link rel="prefetch" href="/assets/js/5.24f6172c.js"><link rel="prefetch" href="/assets/js/1.99dd3f21.js"><link rel="prefetch" href="/assets/js/2.1f75e579.js"><link rel="prefetch" href="/assets/js/4.58344f02.js"><link rel="prefetch" href="/assets/js/0.a350d689.js"><link rel="prefetch" href="/assets/js/6.c9e6dd41.js"><link rel="prefetch" href="/assets/js/7.49de4a32.js">
+    <link rel="stylesheet" href="/assets/css/8.styles.6929ea29.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      Upeoe's blog
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>The Way to Go</span><!----></p><ul class="sidebar-group-items"><li><a href="/go.html#preview" class="sidebar-link">Preview</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/go.html#chapter-1" class="sidebar-link">Chapter 1</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/go.html#hello-world" class="sidebar-link">Hello, world</a></li><li class="sidebar-sub-header"><a href="/go.html#命令行参数" class="sidebar-link">命令行参数</a></li><li class="sidebar-sub-header"><a href="/go.html#查找文件中的重复行" class="sidebar-link">查找文件中的重复行</a></li><li class="sidebar-sub-header"><a href="/go.html#绘制图片" class="sidebar-link">绘制图片</a></li><li class="sidebar-sub-header"><a href="/go.html#获取url" class="sidebar-link">获取URL</a></li></ul></li></ul></div></li></ul></div><div class="page"><div class="content"><h2 id="preview">Preview</h2><pre class="language-bash"><code>$ go version
+go version go1.10 darwin/amd64
+</code></pre><p>Useful website:</p><ul><li><a href="https://golang.org" target="_blank" rel="noopener noreferrer">Golang 官方网站</a></li><li><a href="https://blog.golang.org" target="_blank" rel="noopener noreferrer">Golang 官方博客</a></li><li><a href="https://golang.org/pkg" target="_blank" rel="noopener noreferrer">Golang 标准库源码</a></li></ul><h2 id="chapter-1">Chapter 1</h2><h3 id="hello-world">Hello, world</h3><p><code>ch1/0-helloworld.go</code>: 第一个 <code>Hello, world</code> 应用</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">&quot;fmt&quot;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, world&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li>通过 <code>package</code> 对包进行组织管理，对代码进行模块化</li><li>通过 <code>import</code> 语句导入指定包的代码</li><li>对所有包中一条约定俗成的原则是，成员名开头大写为公有成员(<code>Println</code>)，成员们开头小写为私有成员(<code>selfPrintln</code>)</li><li>关键字 <code>func</code> 定义一个方法(function/method)，<code>main</code> 函数为一个可执行包的入口函数</li></ol></div><pre class="language-bash"><code>$ go run ch1/0-helloworld.go
+Hello, world
+</code></pre><pre class="language-bash"><code>$ go build ch1/0-helloworld.go
+$ ./0-helloworld.go
+Hello, world
+</code></pre><p>Go 的工具链(如 <code>go run</code>)将源代码及其依赖转成计算机的机器指令，编译一个或多个 <code>.go</code> 源文件并链接库文件，生成最终的可执行文件。</p><p><code>go build</code> 将源文件编译后生成可执行的二进制文件。</p><p>除了 <code>run</code> 和 <code>build</code> 工具之外，还有：</p><ul><li><code>go fmt</code> - 把代码格式化为标准格式</li><li><code>go get</code> - 下载指定路径的包</li><li><code>go doc</code> - 查看指定包或函数的文档</li></ul><p>比如下载 <code>goimports</code> 包自动添加或删除 <code>import</code> 包使用</p><pre class="language-bash"><code>$ go get golang.org/x/tools/cmd/goimports
+</code></pre><p>我们可以执行 <code>go doc</code> 命令来查看 <code>Println</code> 的文档：</p><pre class="language-bash"><code>$ go doc fmt.Println
+func Println<span class="token punctuation">(</span>a <span class="token punctuation">..</span>.interface<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>n int, err error<span class="token punctuation">)</span>
+    Println formats using the default formats <span class="token keyword">for</span> its operands and writes to
+    standard output. Spaces are always added between operands and a newline is
+    appended. It returns the number of bytes written and any <span class="token function">write</span> error
+    encountered.
+</code></pre><h3 id="命令行参数">命令行参数</h3><p><code>ch1/1-echo1.go</code>: 打印命令行参数</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;fmt&quot;</span>
+    <span class="token string">&quot;os&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> s<span class="token punctuation">,</span> sep <span class="token builtin">string</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        s <span class="token operator">+=</span> sep <span class="token operator">+</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+        sep <span class="token operator">=</span> <span class="token string">&quot; &quot;</span> 
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="language-bash"><code>$ go run ch1/1-echo1.go foo bar baz zoo
+foo bar baz zoo
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li><code>import</code> 导入包有两种方式，可以是直接加包名单行导入，也可以是使用 <code>()</code> 写在一起，效果是一样的</li><li>关键字 <code>var</code> 定义一个变量(variable)，所有定义的变量都会赋予初始值（如 <code>int</code> 类型初始值为 <code>0</code>， <code>string</code> 类型初始值为 <code>&quot;&quot;</code>， <code>bool</code> 类型初始值为 <code>false</code> 等等）</li><li>变量声明左侧为变量名，右侧为变量类型，可以通过关键字的方式创建变量，也可以通过 <code>:=</code> 语句从右往左自行推导变量类型，并且只能在函数体中使用</li><li><code>len()</code> 函数为几个内置全局函数之一，可以直接调用</li></ol></div><p>Go 中只有 <code>for</code> 一种循环语句，并且有如下两种形式：</p><pre class="language-go"><code><span class="token comment">// 1. 初始化语句 + 条件 + 循环条件成立执行语句</span>
+<span class="token keyword">for</span> initialization<span class="token punctuation">;</span> condition<span class="token punctuation">;</span> post <span class="token punctuation">{</span>
+	<span class="token comment">// zero or more statements</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 第一种的特殊方式，省略第一、第三个部分，保留第二个条件部分，类似 while 语句</span>
+<span class="token keyword">for</span> condition <span class="token punctuation">{</span>
+	<span class="token comment">// some statements</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 更为特殊的方式，三个部分都省略，即无限循环</span>
+<span class="token keyword">for</span> <span class="token punctuation">{</span>
+	<span class="token comment">// some statements</span>
+	<span class="token comment">// can use `break` or `return` to stop infinite loop</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 2. 搭配 range 语句</span>
+<span class="token keyword">for</span> item <span class="token operator">:=</span> <span class="token keyword">range</span> arr <span class="token punctuation">{</span>
+	<span class="token comment">// some statements</span>
+<span class="token punctuation">}</span>
+</code></pre><p>将上面代码改造成 <code>for...range</code> 形式</p><p><code>ch1/2-echo2</code>: <code>for...range</code> 打印命令行参数</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;os&quot;</span>
+	<span class="token string">&quot;fmt&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	s<span class="token punctuation">,</span> sep <span class="token operator">:=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> arg <span class="token operator">:=</span> <span class="token keyword">range</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+		s <span class="token operator">+=</span> sep <span class="token operator">+</span> arg
+		sep <span class="token operator">=</span> <span class="token string">&quot; &quot;</span>
+	<span class="token punctuation">}</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li>如果声明了局部变量没有使用，在编译的时候会报错，可以使用 <code>_</code> 符号抛弃目标值</li><li><code>range</code> 语句对可遍历的对象返回下标和元素值</li></ol></div><p><code>ch1/3-echo3.go</code></p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;os&quot;</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;strings&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>strings<span class="token punctuation">.</span><span class="token function">Join</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li>数据量少的时候可以使用 <code>+</code> 符号拼接字符串，数据量大的时候使用 <code>strings</code> 包的 <code>Join</code> 函数更高效</li></ol></div><h3 id="查找文件中的重复行">查找文件中的重复行</h3><p>我们要实现的功能有点类似 <code>uniq</code> 命令，不同之处在于 <code>uniq</code> 过滤掉重复的行，而我们要输出重复的行。</p><p>首先来创建一个目标文件 <code>ch1/dup-file.txt</code></p><pre class="language-text"><code>foo
+foo
+bar
+baz
+zoo
+zoo
+</code></pre><pre class="language-bash"><code>$ <span class="token function">uniq</span> ch1/dup-file.txt
+foo
+bar
+baz
+zoo
+</code></pre><p><code>ch1/4-dup1.go</code>: 查找重复行</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;bufio&quot;</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;os&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	counts <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+	input <span class="token operator">:=</span> bufio<span class="token punctuation">.</span><span class="token function">NewScanner</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stdin<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> input<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		counts<span class="token punctuation">[</span>input<span class="token punctuation">.</span><span class="token function">Text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">++</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">for</span> line<span class="token punctuation">,</span> n <span class="token operator">:=</span> <span class="token keyword">range</span> counts <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> n <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d\t%s\n&quot;</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> line<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="language-bash"><code>$ <span class="token function">cat</span> ch1/dup-file.txt <span class="token operator">|</span> go run ch1/4-dup1.go
+2	foo
+2	zoo
+</code></pre><p>你也可以不通过文件输入的方式，选择终端直接读取 buffer，结束后按 <code>CTRL+D</code> 发送 <code>EOF</code> 信号。</p><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li><code>map[string]int</code> 表示键(key)为 <code>string</code> 类型，值(value)为 <code>int</code> 类型的 <code>map</code> 集合</li><li><code>make</code> 函数只用于创建 <code>slice</code>, <code>map</code>, <code>channel</code>，不返回指针；而使用 <code>new</code> 进行分配会返回指针</li><li><code>Printf</code> 可以格式化输出，例如如下表格的常用动词(verb)</li></ol></div><table><thead><tr><th style="text-align:center">verb</th><th style="text-align:center">作用</th></tr></thead><tbody><tr><td style="text-align:center">%d</td><td style="text-align:center">格式化十进制整数</td></tr><tr><td style="text-align:center">%x, %o, %b</td><td style="text-align:center">格式化十六、八、二进制整数</td></tr><tr><td style="text-align:center">%f, %g, %e</td><td style="text-align:center">格式化浮点数</td></tr><tr><td style="text-align:center">%t</td><td style="text-align:center">格式化布尔值</td></tr><tr><td style="text-align:center">%c</td><td style="text-align:center">格式化字符(rune)(Unicode码点)</td></tr><tr><td style="text-align:center">%s</td><td style="text-align:center">格式化字符串</td></tr><tr><td style="text-align:center">%q</td><td style="text-align:center">格式化待双引号的字符串或带单引号的字符</td></tr><tr><td style="text-align:center">%v</td><td style="text-align:center">格式化变量的自然形式(natural format)</td></tr><tr><td style="text-align:center">%T</td><td style="text-align:center">格式化变量类型</td></tr><tr><td style="text-align:center">%%</td><td style="text-align:center">百分号 <code>%</code> 本身</td></tr><tr><td style="text-align:center">\t</td><td style="text-align:center">制表符</td></tr><tr><td style="text-align:center">\n</td><td style="text-align:center">换行符</td></tr></tbody></table><p>Demo:</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">&quot;fmt&quot;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	d <span class="token operator">:=</span> <span class="token number">63</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;digit %d, hex %x, octal %o, bin %b\n&quot;</span><span class="token punctuation">,</span> d<span class="token punctuation">,</span> d<span class="token punctuation">,</span> d<span class="token punctuation">,</span> d<span class="token punctuation">)</span>
+	f <span class="token operator">:=</span> <span class="token number">63.33</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;float %f, %g, %e\n&quot;</span><span class="token punctuation">,</span> f<span class="token punctuation">,</span> f<span class="token punctuation">,</span> f<span class="token punctuation">)</span>
+	b_t <span class="token operator">:=</span> <span class="token boolean">true</span>
+	b_f <span class="token operator">:=</span> <span class="token boolean">false</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;bool true '%t', bool false '%t'\n&quot;</span><span class="token punctuation">,</span> b_t<span class="token punctuation">,</span> b_f<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;rune %c\n&quot;</span><span class="token punctuation">,</span> <span class="token number">0x4E2D</span><span class="token punctuation">)</span>
+	s <span class="token operator">:=</span> <span class="token string">&quot;foo&quot;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;string %s\n&quot;</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span>
+	q_s <span class="token operator">:=</span> <span class="token string">&quot;bar&quot;</span>
+	q_c <span class="token operator">:=</span> <span class="token string">'b'</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;quote string %q, quote character %q\n&quot;</span><span class="token punctuation">,</span> q_s<span class="token punctuation">,</span> q_c<span class="token punctuation">)</span>
+	m <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span>
+	m<span class="token punctuation">[</span><span class="token string">&quot;key&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;value&quot;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;map %v\n&quot;</span><span class="token punctuation">,</span> m<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;digit type %T, string type %T, character type %T, map type %T\n&quot;</span><span class="token punctuation">,</span> d<span class="token punctuation">,</span> q_s<span class="token punctuation">,</span> q_c<span class="token punctuation">,</span> m<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;%%\t%%\n&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><p>输出</p><pre class="language-text"><code>digit 63, hex 3f, octal 77, bin 111111
+float 63.330000, 63.33, 6.333000e+01
+bool true 'true', bool false 'false'
+rune 中
+string foo
+quote string &quot;bar&quot;, quote character 'b'
+map map[key:value]
+digit type int, string type string, character type int32, map type map[string]string
+%	%
+</code></pre><p><code>ch1/6-open-file-1.go</code>: 读取文件</p><p>先来看下 <code>os.Open</code> 这个函数的文档</p><pre class="language-text"><code>func Open(name string) (*File, error)
+	Open opens the named file for reading. If successful, methods on the
+	returned file can be used for reading; the associated file descriptor has
+	mode O_RDONLY. If there is an error, it will be of type *PathError.
+</code></pre><p>可以看到，返回值有两个，一个 <code>File</code> 类型指针，一个错误信息</p><p>一种读取文件的方式为：</p><p><code>ch1/6-open-file-1.go</code></p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;bufio&quot;</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;os&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	file <span class="token operator">:=</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+	f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stderr<span class="token punctuation">,</span> <span class="token string">&quot;open file error %v\n&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	buf <span class="token operator">:=</span> <span class="token function">createScanner</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> buf<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>buf<span class="token punctuation">.</span><span class="token function">Text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">createScanner</span><span class="token punctuation">(</span>f <span class="token operator">*</span>os<span class="token punctuation">.</span>File<span class="token punctuation">)</span> <span class="token operator">*</span>bufio<span class="token punctuation">.</span>Scanner <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> bufio<span class="token punctuation">.</span><span class="token function">NewScanner</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li><code>os.Open</code> 函数打开一个文件，返回值类型为 <code>*File</code> 指针和错误对象</li><li><code>bufio.NewScanner</code> 函数返回一个 <code>*Scanner</code> 指针，每次读取文件一行内容， <code>Scan</code> 函数判断是否到文件的结尾</li><li><code>createScanner</code> 函数接收一个 <code>*File</code> 指针引用的一个副本作为对象，类似其他编程语言中的引用传递，指向同一块内存空间</li></ol></div><p>另一种读取文件的方式：</p><p><code>ch1/7-open-file-2.go</code></p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;io/ioutil&quot;</span>
+	<span class="token string">&quot;os&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	file <span class="token operator">:=</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+	buf<span class="token punctuation">,</span> err <span class="token operator">:=</span> ioutil<span class="token punctuation">.</span><span class="token function">ReadFile</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		<span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li><code>ioutil.ReadFile</code> 读取整个文件并返回内容</li><li><code>defer-panic-recover</code> 是 Go 中的一种异常处理机制，当遇到问题可以 <code>panic</code> 出 <code>error</code>， 当遇到 <code>recover</code> 时进行处理；除了 <code>err != nil</code> 的处理方法你还能这么做，也许你可能会联想到 Java 中的 <code>try/catch</code> 机制</li></ol></div><p>有了读文件的例子，我们下面的问题就是如何串起来读取文件后进行查找重复行</p><p><code>ch1/8-dup2.go</code>: 从标准输入或者文件查找重复行</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;bufio&quot;</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;os&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	counts <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+	files <span class="token operator">:=</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+	<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+		<span class="token function">countLines</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stdin<span class="token punctuation">,</span> counts<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+		<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> file <span class="token operator">:=</span> <span class="token keyword">range</span> files <span class="token punctuation">{</span>
+			f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+			<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+				fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stderr<span class="token punctuation">,</span> <span class="token string">&quot;open file error: %v\n&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+				<span class="token keyword">continue</span>
+			<span class="token punctuation">}</span>
+			<span class="token function">countLines</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> counts<span class="token punctuation">)</span>
+			f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">for</span> line<span class="token punctuation">,</span> n <span class="token operator">:=</span> <span class="token keyword">range</span> counts <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> n <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d\t%s\n&quot;</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> line<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">countLines</span><span class="token punctuation">(</span>f <span class="token operator">*</span>os<span class="token punctuation">.</span>File<span class="token punctuation">,</span> counts <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	buf <span class="token operator">:=</span> bufio<span class="token punctuation">.</span><span class="token function">NewScanner</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> buf<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		counts<span class="token punctuation">[</span>buf<span class="token punctuation">.</span><span class="token function">Text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">++</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p><code>ch1/9-dup3.go</code>: 文件输入查找重复行</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;io/ioutil&quot;</span>
+	<span class="token string">&quot;os&quot;</span>
+	<span class="token string">&quot;strings&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	counts <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> file <span class="token operator">:=</span> <span class="token keyword">range</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+		buf<span class="token punctuation">,</span> err <span class="token operator">:=</span> ioutil<span class="token punctuation">.</span><span class="token function">ReadFile</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stderr<span class="token punctuation">,</span> <span class="token string">&quot;open file error, %v\n&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+			<span class="token keyword">continue</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> line <span class="token operator">:=</span> <span class="token keyword">range</span> strings<span class="token punctuation">.</span><span class="token function">Split</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;\n&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			counts<span class="token punctuation">[</span>line<span class="token punctuation">]</span><span class="token operator">++</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">for</span> line<span class="token punctuation">,</span> n <span class="token operator">:=</span> <span class="token keyword">range</span> counts <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> n <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d\t%s\n&quot;</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> line<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li><code>ioutil.ReadFile</code> 函数返回字节切片([]byte)，需要通过 <code>string()</code> 转化为字符串</li><li>通过 <code>strings.Split</code> 函数根据 <code>\n</code> 回车符分割字符串, <code>Split</code> 返回分割后的切片(slice)</li></ol></div><h3 id="绘制图片">绘制图片</h3><p>我们接下来要绘制一个简单的图片，只有黑色一种颜色</p><p><code>ch1/10-image1.go</code></p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;image&quot;</span>
+	<span class="token string">&quot;image/color&quot;</span>
+	<span class="token string">&quot;image/png&quot;</span>
+	<span class="token string">&quot;log&quot;</span>
+	<span class="token string">&quot;os&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> <span class="token punctuation">(</span>
+		size <span class="token operator">=</span> <span class="token number">100</span>
+	<span class="token punctuation">)</span>
+
+	rect <span class="token operator">:=</span> image<span class="token punctuation">.</span><span class="token function">Rect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> size<span class="token punctuation">,</span> size<span class="token punctuation">)</span>
+	img <span class="token operator">:=</span> image<span class="token punctuation">.</span><span class="token function">NewRGBA</span><span class="token punctuation">(</span>rect<span class="token punctuation">)</span>
+
+	<span class="token comment">// set image color</span>
+	<span class="token keyword">for</span> y <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> y<span class="token operator">++</span> <span class="token punctuation">{</span>
+		<span class="token keyword">for</span> x <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> x<span class="token operator">++</span> <span class="token punctuation">{</span>
+			img<span class="token punctuation">.</span><span class="token function">Set</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> color<span class="token punctuation">.</span>RGBA<span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span><span class="token string">&quot;image.png&quot;</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">if</span> err <span class="token operator">:=</span> png<span class="token punctuation">.</span><span class="token function">Encode</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">if</span> err <span class="token operator">:=</span> f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li>关键字 <code>const</code> 用来申明常量，表达式在编译时被计算，初始化后无法被再次修改</li><li>几个 <code>image</code> 包函数用于图片操作，具体内容可以查看文档</li><li><code>log</code> 包用于格式化输出信息，输出到指定目标，可以是标准输出或文件等</li><li><code>if</code> 语句中可以赋值并判断，使得一些代码更精简 <code>if initialization; conditions {}</code></li><li><code>png.Encode</code> 函数用于将 <code>Image</code> 对象格式化为 <code>PNG</code> 图片格式</li><li><code>log.Fatal</code> 函数等价于 <code>fmt.Print</code> 函数的作用，同时会执行 <code>os.Exit(1)</code> 退出应用程序并返回状态码 1</li></ol></div><p>上面是输出一张图片，下面的例子是输出一张 GIF，动图内容为利萨茹曲线(Lissajous)，有兴趣的可以查看这个在线演示 <a href="http://www.phy.hk/wiki/j/Chi/lissajous/lissajous_js_chi.htm" target="_blank" rel="noopener noreferrer">廣義利薩如圖形</a>：</p><p><code>ch1/11-lissajous.go</code>: 利萨茹曲线动图</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;image&quot;</span>
+	<span class="token string">&quot;image/color&quot;</span>
+	<span class="token string">&quot;image/gif&quot;</span>
+	<span class="token string">&quot;math&quot;</span>
+	<span class="token string">&quot;math/rand&quot;</span>
+	<span class="token string">&quot;os&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> palette <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>color<span class="token punctuation">.</span>Color<span class="token punctuation">{</span>color<span class="token punctuation">.</span>White<span class="token punctuation">,</span> color<span class="token punctuation">.</span>Black<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">(</span>
+	whiteIndex <span class="token operator">=</span> <span class="token number">0</span>
+	blackIndex <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token punctuation">)</span> <span class="token comment">// 调色板中的位置</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> <span class="token punctuation">(</span>
+		cycles  <span class="token operator">=</span> <span class="token number">5</span>		<span class="token comment">// X轴正弦波循环次数</span>
+		res     <span class="token operator">=</span> <span class="token number">0.001</span> <span class="token comment">// 角分辨率</span>
+		size    <span class="token operator">=</span> <span class="token number">100</span>   <span class="token comment">// 图片尺寸</span>
+		nframes <span class="token operator">=</span> <span class="token number">64</span>    <span class="token comment">// 动画帧数</span>
+		delay   <span class="token operator">=</span> <span class="token number">8</span>     <span class="token comment">// 延迟值(*10ms)</span>
+	<span class="token punctuation">)</span>
+
+	freq <span class="token operator">:=</span> rand<span class="token punctuation">.</span><span class="token function">Float64</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">3.0</span> <span class="token comment">// Y轴正弦波频率</span>
+	anim <span class="token operator">:=</span> gif<span class="token punctuation">.</span>GIF<span class="token punctuation">{</span>LoopCount<span class="token punctuation">:</span> nframes<span class="token punctuation">}</span>
+	phase <span class="token operator">:=</span> <span class="token number">0.0</span> <span class="token comment">// 初始偏振值</span>
+
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nframes<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		rect <span class="token operator">:=</span> image<span class="token punctuation">.</span><span class="token function">Rect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span>size<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span>size<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+		img <span class="token operator">:=</span> image<span class="token punctuation">.</span><span class="token function">NewPaletted</span><span class="token punctuation">(</span>rect<span class="token punctuation">,</span> palette<span class="token punctuation">)</span>
+
+		<span class="token keyword">for</span> t <span class="token operator">:=</span> <span class="token number">0.0</span><span class="token punctuation">;</span> t <span class="token operator">&lt;</span> cycles<span class="token operator">*</span><span class="token number">2</span><span class="token operator">*</span>math<span class="token punctuation">.</span>Pi<span class="token punctuation">;</span> t <span class="token operator">+=</span> res <span class="token punctuation">{</span>
+			x <span class="token operator">:=</span> math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+			y <span class="token operator">:=</span> math<span class="token punctuation">.</span><span class="token function">Sin</span><span class="token punctuation">(</span>t<span class="token operator">*</span>freq <span class="token operator">+</span> phase<span class="token punctuation">)</span>
+			img<span class="token punctuation">.</span><span class="token function">SetColorIndex</span><span class="token punctuation">(</span>size<span class="token operator">+</span><span class="token function">int</span><span class="token punctuation">(</span>x<span class="token operator">*</span>size<span class="token operator">+</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> size<span class="token operator">+</span><span class="token function">int</span><span class="token punctuation">(</span>y<span class="token operator">*</span>size<span class="token operator">+</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+				blackIndex<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		phase <span class="token operator">+=</span> <span class="token number">0.1</span>
+		anim<span class="token punctuation">.</span>Delay <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>anim<span class="token punctuation">.</span>Delay<span class="token punctuation">,</span> delay<span class="token punctuation">)</span>
+		anim<span class="token punctuation">.</span>Image <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>anim<span class="token punctuation">.</span>Image<span class="token punctuation">,</span> img<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+
+	gif<span class="token punctuation">.</span><span class="token function">EncodeAll</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stdout<span class="token punctuation">,</span> <span class="token operator">&amp;</span>anim<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><p><code>go run 11-lissajous.go &gt; lissajous.gif</code> 可以查看动图结果</p><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li><code>[]color.Color</code> 是一个切片(slice)，定义切片的语法为 <code>var identifier []type</code>，或者使用前面提到的 <code>make</code> 来创建，<code>make([]type, len)</code></li><li><code>gif.GIF</code> 是一个结构体(struct)，包含一组值或者字段的集合，内部变量可以通过 <code>.</code> 进行访问</li><li><code>append</code> 内置全局函数用来向一个切片添加元素并返回结果，有两种添加方式：
+<ol><li>添加多个元素 <code>append(slice1, ele1, ele2)</code>，支持任意个数参数;</li><li>添加包含在其他 <code>slice</code> 的元素 <code>append(slice1, slice2...)</code>，只支持两个参数</li></ol></li></ol></div><h3 id="获取url">获取URL</h3><p>通常，我们可以通过 Linux 的 <code>curl</code> 命令来发出网络请求获取数据，例如：</p><pre class="language-bash"><code>$ <span class="token function">curl</span> --user-agent <span class="token string">&quot;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Mobile Safari/537.36&quot;</span> -I https://github.com
+HTTP/1.1 200 OK
+Date: Wed, 23 May 2018 02:40:37 GMT
+Content-Type: text/html<span class="token punctuation">;</span> charset<span class="token operator">=</span>utf-8
+Server: GitHub.com
+Status: 200 OK
+Cache-Control: no-cache
+</code></pre><p>Go 自带并封装了网络请求的工具，使用起来非常方便。</p><p><code>ch1/12-curl.go</code>: 获取网络请求数据</p><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;io/ioutil&quot;</span>
+	<span class="token string">&quot;net/http&quot;</span>
+	<span class="token string">&quot;os&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	url <span class="token operator">:=</span> os<span class="token punctuation">.</span>Args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+	resp<span class="token punctuation">,</span> err <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stderr<span class="token punctuation">,</span> <span class="token string">&quot;fetch error, %v\n&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+		os<span class="token punctuation">.</span><span class="token function">Exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	buf<span class="token punctuation">,</span> err <span class="token operator">:=</span> ioutil<span class="token punctuation">.</span><span class="token function">ReadAll</span><span class="token punctuation">(</span>resp<span class="token punctuation">.</span>Body<span class="token punctuation">)</span>
+	resp<span class="token punctuation">.</span>Body<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Fprintf</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stderr<span class="token punctuation">,</span> <span class="token string">&quot;reading error, %v\n&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+		os<span class="token punctuation">.</span><span class="token function">Exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;%s&quot;</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><pre class="language-text"><code>$ go run 12-curl.go https://github.com
+# response body ellipsis...
+
+$ go run 12-curl.go http://some.domain
+fetch error, Get http://some.domain: dial tcp: lookup some.domain: no such host
+exit status 1
+</code></pre><div class="tip custom-block"><p class="custom-block-title">ATTENTION</p><ol><li><code>net/http</code> 包提供了客户端和服务端的功能，比如发送一个客户端请求，或者起一个 Web 服务器(Server)</li><li><code>os.Exit</code> 函数用于退出当前应用程序，参数为返回状态码，0 表示成功，非 0 表示失败；程序会立刻终止，用关键词 <code>defer</code> 声明的延迟函数不会执行</li></ol></div></div><!----><!----></div></div></div>
+    <script src="/assets/js/3.f52f4b16.js" defer></script><script src="/assets/js/app.b13a9952.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Upeoe&#39;s blog | CentOS Configure Proxy</title>
+    <meta name="description" content="This is upeoe blog">
+    
+    
+    <link rel="preload" href="/assets/css/8.styles.6929ea29.css" as="style"><link rel="preload" href="/assets/js/app.b13a9952.js" as="script"><link rel="preload" href="/assets/js/5.24f6172c.js" as="script"><link rel="prefetch" href="/assets/js/1.99dd3f21.js"><link rel="prefetch" href="/assets/js/2.1f75e579.js"><link rel="prefetch" href="/assets/js/3.f52f4b16.js"><link rel="prefetch" href="/assets/js/4.58344f02.js"><link rel="prefetch" href="/assets/js/0.a350d689.js"><link rel="prefetch" href="/assets/js/6.c9e6dd41.js"><link rel="prefetch" href="/assets/js/7.49de4a32.js">
+    <link rel="stylesheet" href="/assets/css/8.styles.6929ea29.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      Upeoe's blog
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>CentOS Configure Proxy</span><!----></p><ul class="sidebar-group-items"><li><a href="/centos-configure-proxy.html#install-shadowsocks-client-and-configure-it" class="sidebar-link">Install Shadowsocks Client and Configure it</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/centos-configure-proxy.html#service-auto-restart" class="sidebar-link">Service Auto Restart</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/centos-configure-proxy.html#check-is-config-works" class="sidebar-link">Check is Config works</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/centos-configure-proxy.html#install-privoxy-and-configure-it" class="sidebar-link">Install Privoxy and Configure it</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/centos-configure-proxy.html#apply" class="sidebar-link">Apply</a><ul class="sidebar-sub-headers"></ul></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="centos-configure-proxy">CentOS Configure Proxy</h1><h2 id="install-shadowsocks-client-and-configure-it">Install Shadowsocks Client and Configure it</h2><pre class="language-text"><code>$ pip install shadowsocks
+$ mkdir /etc/shadowsocks
+</code></pre><p>Create <code>/etc/shadowsocks/shadowsocks.json</code>:</p><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;server&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ip&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;server_port&quot;</span><span class="token operator">:</span> port<span class="token punctuation">,</span>
+  <span class="token property">&quot;local_address&quot;</span><span class="token operator">:</span> <span class="token string">&quot;127.0.0.1&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;local_port&quot;</span><span class="token operator">:</span> <span class="token number">1080</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;password&quot;</span><span class="token operator">:</span> <span class="token string">&quot;password&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;timeout&quot;</span><span class="token operator">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;method&quot;</span><span class="token operator">:</span> <span class="token string">&quot;aes-256-cfb&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;fase_open&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;workers&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="service-auto-restart">Service Auto Restart</h2><p>Create <code>/etc/systemd/system/shadowsocks.service</code>:</p><pre class="language-text"><code>[Unit]
+Description=Shadowsocks
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/sslocal -c /etc/shadowsocks/shadowsocks.json
+[Install]
+WantedBy=multi-user.target
+</code></pre><p>Start service:</p><pre class="language-text"><code>$ systemctl enable shadowsocks.service
+$ systemctl start shadowsocks.service
+</code></pre><h2 id="check-is-config-works">Check is Config works</h2><pre class="language-text"><code>$ curl --socks5 127.0.0.1:1080 -I http://www.google.com
+</code></pre><h2 id="install-privoxy-and-configure-it">Install Privoxy and Configure it</h2><pre class="language-text"><code>$ yum install -y privoxy
+</code></pre><p>Edit <code>/etc/privoxy/config</code>:</p><pre class="language-text"><code>listen-address 127.0.0.1:8118 # keep this as default
+forward-socks5t / 127.0.0.1:1080 . # modify this to socks port, notice the last dot
+</code></pre><h2 id="apply">Apply</h2><pre class="language-text"><code>export http_proxy=socks5://127.0.0.1:1080
+$ http_proxy=$http_proxy go get xxx
+</code></pre></div><!----><!----></div></div></div>
+    <script src="/assets/js/5.24f6172c.js" defer></script><script src="/assets/js/app.b13a9952.js" defer></script>
+  </body>
+</html>

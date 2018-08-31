@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Upeoe&#39;s blog | The Way to Python</title>
+    <meta name="description" content="The way to python">
+    
+    
+    <link rel="preload" href="/assets/css/8.styles.6929ea29.css" as="style"><link rel="preload" href="/assets/js/app.b13a9952.js" as="script"><link rel="preload" href="/assets/js/0.a350d689.js" as="script"><link rel="prefetch" href="/assets/js/5.24f6172c.js"><link rel="prefetch" href="/assets/js/1.99dd3f21.js"><link rel="prefetch" href="/assets/js/2.1f75e579.js"><link rel="prefetch" href="/assets/js/3.f52f4b16.js"><link rel="prefetch" href="/assets/js/4.58344f02.js"><link rel="prefetch" href="/assets/js/6.c9e6dd41.js"><link rel="prefetch" href="/assets/js/7.49de4a32.js">
+    <link rel="stylesheet" href="/assets/css/8.styles.6929ea29.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      Upeoe's blog
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><!----></nav><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>The Way to Python</span><!----></p><ul class="sidebar-group-items"><li><a href="/python.html#preview" class="sidebar-link">Preview</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/python.html#configure-pip-conf" class="sidebar-link">Configure pip.conf</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/python.html#voyage" class="sidebar-link">Voyage</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/python.html#virtualenv" class="sidebar-link">Virtualenv</a></li><li class="sidebar-sub-header"><a href="/python.html#ipython" class="sidebar-link">IPython</a></li><li class="sidebar-sub-header"><a href="/python.html#speechrecognition" class="sidebar-link">SpeechRecognition</a></li></ul></li></ul></div></li></ul></div><div class="page"><div class="content"><h2 id="preview">Preview</h2><pre class="language-bash"><code>$ python3 --version
+Python 3.6.5
+
+$ pip3 --version
+pip 10.0.1 from /usr/local/lib/python3.6/site-packages/pip <span class="token punctuation">(</span>python 3.6<span class="token punctuation">)</span>
+</code></pre><h2 id="configure-pip-conf">Configure pip.conf</h2><p><code>pip</code> 安装包使用阿里云镜像加速</p><p><code>~/.pip/pip.conf</code></p><pre class="language-text"><code>[global]
+index-url = http://mirrors.aliyun.com/pypi/simple/
+[install]
+trusted-host = mirrors.aliyun.com
+</code></pre><h2 id="voyage">Voyage</h2><h3 id="virtualenv">Virtualenv</h3><p><a href="https://virtualenv.pypa.io/en/stable/" target="_blank" rel="noopener noreferrer">Virtualenv</a></p><pre class="language-bash"><code>$ pip3 <span class="token function">install</span> virtualenv
+
+<span class="token comment"># 如果提示 [Errno 13] Permission denied: '/usr/local/bin/virtualenv'</span>
+$ <span class="token function">sudo</span> -H pip3 <span class="token function">install</span> virtualenv
+</code></pre><h4 id="usage">Usage</h4><pre class="language-bash"><code><span class="token comment"># 创建环境容器，文件夹名为 `ENV`</span>
+$ virtualenv ENV
+
+$ <span class="token function">ls</span>
+bin		include		lib		pip-selfcheck.json
+
+<span class="token comment"># 激活虚拟开发环境，现在安装库以及使用的都是以当前文件夹/容器优先</span>
+<span class="token comment"># 并且会在命令行左侧提示符(prompt)增加一项 `env name`，表明你处在哪一个虚拟环境容器中</span>
+$ <span class="token function">cd</span> ENV <span class="token operator">&amp;&amp;</span> <span class="token function">source</span> bin/activate
+
+
+<span class="token comment"># 可以看到，环境变量会优先从 `ENV/bin` 下查找</span>
+$ <span class="token keyword">echo</span> <span class="token variable">$PATH</span>
+/Users/<span class="token punctuation">[</span>username<span class="token punctuation">]</span>/workspace/python/ENV/bin:/user/local/bin:/usr/bin:/bin:/bin<span class="token punctuation">..</span>.
+
+$ python --version
+Python 3.6.5
+
+$ pip --version
+pip 10.0.1
+
+$ <span class="token function">which</span> python
+/Users/<span class="token punctuation">[</span>username<span class="token punctuation">]</span>/workspace/python/ENV/bin/python
+
+$ <span class="token function">which</span> pip
+/Users/<span class="token punctuation">[</span>username<span class="token punctuation">]</span>/workspace/python/ENV/bin/pip
+
+<span class="token comment"># 不做配置的话，默认会安装如下内容，包括复制的一份 `Python`</span>
+$ pip list
+Package    Version
+---------- -------
+pip        10.0.1
+setuptools 39.2.0
+wheel      0.31.1
+
+<span class="token comment"># 查看 package 安装目录</span>
+$ python -m site
+sys.path <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'/Users/[username]/workspace/python/ENV'</span>,
+    <span class="token string">'/Users/[username]/workspace/python/ENV/lib/python36.zip'</span>,
+    <span class="token string">'/Users/[username]/workspace/python/ENV/lib/python3.6'</span>,
+    <span class="token string">'/Users/[username]/workspace/python/ENV/lib/python3.6/lib-dynload'</span>,
+    <span class="token string">'/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/lib/python3.6'</span>,
+    <span class="token string">'/Users/[username]/workspace/python/ENV/lib/python3.6/site-packages'</span>,
+<span class="token punctuation">]</span>
+
+<span class="token comment"># 退出当前容器</span>
+$ deactivate
+</code></pre><h3 id="ipython">IPython</h3><p><a href="https://ipython.org/" target="_blank" rel="noopener noreferrer">IPython</a> 是一个可交互的 python shell 解释器，支持语法高亮、 tab 补全、直接执行系统命令、保存历史记录等等功能。</p><pre class="language-bash"><code>$ pip3 <span class="token function">install</span> ipython
+</code></pre><h3 id="speechrecognition">SpeechRecognition</h3><p><a href="https://github.com/Uberi/speech_recognition" target="_blank" rel="noopener noreferrer">SpeechRecognition</a></p><pre class="language-bash"><code><span class="token comment"># 预先安装 `pyaudio` 包</span>
+$ brew <span class="token function">install</span> portaudio
+$ pip3 <span class="token function">install</span> pyaudio
+
+<span class="token comment"># 安装 `SpeechRecognition` 包</span>
+$ pip <span class="token function">install</span> SpeechRecognition
+</code></pre></div><!----><!----></div></div></div>
+    <script src="/assets/js/0.a350d689.js" defer></script><script src="/assets/js/app.b13a9952.js" defer></script>
+  </body>
+</html>
